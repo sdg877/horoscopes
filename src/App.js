@@ -1,11 +1,13 @@
 import "./App.css";
+import { Route, Routes } from 'react-router-dom';
+import Aquarius from "./pages/Aquarius";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Check Your Horoscopes...</h1>
-      </header>
+      <Routes>
+        <Route path="/aquarius" element={<Aquarius sign="aquarius"/>} />
+      </Routes>
     </div>
   );
 }
