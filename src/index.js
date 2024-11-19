@@ -6,12 +6,21 @@ import ErrorBoundary from "./components/ErrorBoundary";
 
 const rootElement = document.getElementById("root");
 
+const routerOptions = {
+  future: {
+    v7_startTransition: true,
+    v7_relativeSplatPath: true,
+  },
+};
+
+
+
 if (rootElement) {
   const root = ReactDOM.createRoot(rootElement);
   root.render(
     <React.StrictMode>
       <ErrorBoundary>
-        <BrowserRouter>
+      <BrowserRouter {...routerOptions}>
           <App />
         </BrowserRouter>
       </ErrorBoundary>
