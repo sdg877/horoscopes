@@ -6,3 +6,10 @@
   align-items: center;
 }
 
+.gemini-page {
+  background-color: #F0E68C;
+  min-height: 100vh; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
