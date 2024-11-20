@@ -21,3 +21,11 @@
   justify-content: center;
   align-items: center;
 }
+
+.scorpio-page {
+  background-color: #CD5C5C;
+  min-height: 100vh; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
