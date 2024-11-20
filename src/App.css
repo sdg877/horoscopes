@@ -13,3 +13,11 @@
   justify-content: center;
   align-items: center;
 }
+
+.libra-page {
+  background-color: #FFB6C1;
+  min-height: 100vh; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
