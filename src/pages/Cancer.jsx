@@ -48,7 +48,7 @@ const Cancer = () => {
   }, [timePeriod, fetchHoroscope]);  
 
   return (
-    <SignPage signName="Cancer" backgroundColor="">
+    <SignPage signName="Cancer" backgroundColor="#20B2AA">
       <div className="prediction">
         {error ? (
           <p className="error">Error: {error}</p>

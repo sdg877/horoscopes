@@ -48,7 +48,7 @@ const Pisces = () => {
   }, [timePeriod, fetchHoroscope]);  
 
   return (
-    <SignPage signName="Pisces" backgroundColor="">
+    <SignPage signName="Pisces" backgroundColor="#B0C4DE">
       <div className="prediction">
         {error ? (
           <p className="error">Error: {error}</p>
