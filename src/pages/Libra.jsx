@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import SignPage from '../components/SignPage';
 import '../App.css';
 
@@ -7,7 +7,13 @@ const Libra = () => {
   const [timePeriod, setTimePeriod] = useState('today');
   const [error, setError] = useState(null);
 
-  const fetchHoroscope = async (timePeriod) => {
+
+  const fixHoroscopeData = (data) => {
+    return data.replace(/(\.)(\S)/g, '$1 $2');
+  };
+
+
+  const fetchHoroscope = useCallback(async (timePeriod) => {
     try {
       const apiHost = process.env.REACT_APP_X_RAPIDAPI_HOST;
       const apiKey = process.env.REACT_APP_X_RAPIDAPI_KEY;
@@ -29,19 +35,29 @@ const Libra = () => {
       if (!response.ok) throw new Error('Failed to fetch horoscope');
 
       const data = await response.json();
-      setPrediction(data.prediction);
+      const cleanedPrediction = fixHoroscopeData(data.prediction);  
+      setPrediction(cleanedPrediction);  
       setError(null);
     } catch (err) {
       setError(err.message);
     }
-  };
+  }, []); 
 
   useEffect(() => {
     fetchHoroscope(timePeriod);
-  }, [timePeriod]);
+  }, [timePeriod, fetchHoroscope]);  
 
   return (
     <SignPage signName="Libra" backgroundColor="#FFB6C1">
+      <div className="prediction">
+        {error ? (
+          <p className="error">Error: {error}</p>
+        ) : prediction ? (
+          <p>{prediction}</p>
+        ) : (
+          <p>Loading horoscope...</p>
+        )}
+      </div>
       <div className="controls">
         <button
           className={timePeriod === 'yesterday' ? 'active' : ''}
@@ -61,15 +77,6 @@ const Libra = () => {
         >
           Tomorrow
         </button>
-      </div>
-      <div className="prediction">
-        {error ? (
-          <p className="error">Error: {error}</p>
-        ) : prediction ? (
-          <p>{prediction}</p>
-        ) : (
-          <p>Loading horoscope...</p>
-        )}
       </div>
     </SignPage>
   );
